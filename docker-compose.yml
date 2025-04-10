@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"  # API端口
+      - "9001:9001"  # 控制台端口
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - ./minio/data:/data  # 数据持久化
+    command: server /data --console-address ":9001"
+    restart: unless-stopped 

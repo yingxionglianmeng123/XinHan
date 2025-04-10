@@ -1,0 +1,16 @@
+# 微信小程序配置
+wx:
+  miniapp:
+    appid: wxe41f469f76534e68
+    secret: d93d7d3fdde3dc920a44ffbf8522e8aa
+
+# JWT配置
+jwt:
+  secret: xinghanyunlian
+  expiration: 86400  # 24小时 
+
+minio:
+  endpoint: http://localhost:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: xhai-files 
