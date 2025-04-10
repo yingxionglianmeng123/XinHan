@@ -10,6 +10,7 @@ import com.xhai.vo.PageResponse;
 import com.xhai.vo.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -100,6 +101,7 @@ public class DemandController {
     }
     
     //根据发布者获取需求
+    @Transactional
     @GetMapping("/publisher")
     public ResponseEntity<ApiResponse<PageResponse<DemandVO>>> getDemandsByPublisher(@RequestParam String publisherId) {
         try {

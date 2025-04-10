@@ -12,7 +12,7 @@ public interface DemandMapper extends BaseMapper<Demand> {
     @Select("SELECT * FROM demands WHERE status = #{status}")
     List<Demand> findByStatus(String status);
     
-    @Select("SELECT * FROM demands WHERE publisher_id = #{publisherId}")
+    @Select("SELECT * FROM demands WHERE publisherId = #{publisherId}")
     List<Demand> findByPublisherId(String publisherId);
     
     @Select("SELECT * FROM demands WHERE skill = #{skill}")

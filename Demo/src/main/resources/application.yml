@@ -10,7 +10,7 @@ jwt:
   expiration: 86400  # 24小时 
 
 minio:
-  endpoint: http://localhost:9000
+  endpoint: http://122.51.187.38:9000
   accessKey: minioadmin
   secretKey: minioadmin
-  bucketName: xhai-files 
+  bucket: xhai 
