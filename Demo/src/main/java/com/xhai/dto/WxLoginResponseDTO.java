@@ -9,4 +9,5 @@ public class WxLoginResponseDTO {
     private int userType;
     private String nickName;
     private String avatarUrl;
+    private String userId;
 } 

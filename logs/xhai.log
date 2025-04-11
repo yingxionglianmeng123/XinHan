@@ -1,0 +1,103 @@
+2025-04-11 13:22:25 [main] INFO  com.xhai.XhaiApplication - Starting XhaiApplication using Java 1.8.0_201 on win10-2020BULJI with PID 7116 (E:\XHAI\Demo\target\classes started by Administrator in E:\XHAI)
+2025-04-11 13:22:25 [main] DEBUG com.xhai.XhaiApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-04-11 13:22:25 [main] INFO  com.xhai.XhaiApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-11 13:22:26 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (https)
+2025-04-11 13:22:27 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1779 ms
+2025-04-11 13:22:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (https) with context path ''
+2025-04-11 13:22:29 [main] INFO  com.xhai.XhaiApplication - Started XhaiApplication in 4.649 seconds (JVM running for 6.013)
+2025-04-11 13:22:32 [main] INFO  com.xhai.XhaiApplication - Starting XhaiApplication using Java 1.8.0_201 on win10-2020BULJI with PID 3892 (E:\XHAI\Demo\target\classes started by Administrator in E:\XHAI)
+2025-04-11 13:22:32 [main] DEBUG com.xhai.XhaiApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-04-11 13:22:32 [main] INFO  com.xhai.XhaiApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-11 13:22:34 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (https)
+2025-04-11 13:22:34 [main] INFO  o.a.c.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2025-04-11 13:22:34 [main] INFO  o.a.c.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2025-04-11 13:22:34 [main] INFO  o.a.c.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2025-04-11 13:22:34 [main] INFO  o.a.c.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2025-04-11 13:22:34 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-11 13:22:34 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-04-11 13:22:34 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-11 13:22:34 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1408 ms
+2025-04-11 13:22:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (https) with context path ''
+2025-04-11 13:22:36 [main] INFO  com.xhai.XhaiApplication - Started XhaiApplication in 4.134 seconds (JVM running for 5.199)
+2025-04-11 13:42:31 [main] INFO  com.xhai.XhaiApplication - Starting XhaiApplication using Java 1.8.0_201 on win10-2020BULJI with PID 16012 (E:\XHAI\Demo\target\classes started by Administrator in E:\XHAI)
+2025-04-11 13:42:31 [main] DEBUG com.xhai.XhaiApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-04-11 13:42:31 [main] INFO  com.xhai.XhaiApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-11 13:42:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (https)
+2025-04-11 13:42:32 [main] INFO  o.a.c.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2025-04-11 13:42:32 [main] INFO  o.a.c.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2025-04-11 13:42:32 [main] INFO  o.a.c.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2025-04-11 13:42:32 [main] INFO  o.a.c.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2025-04-11 13:42:32 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-11 13:42:32 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-04-11 13:42:32 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-11 13:42:32 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1208 ms
+2025-04-11 13:42:33 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'articleController': Unsatisfied dependency expressed through field 'minioService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'minioServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'minio.allowed-file-types' in value "#{${minio.allowed-file-types}}"
+2025-04-11 13:42:33 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-04-11 13:42:33 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-04-11 13:42:33 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'articleController': Unsatisfied dependency expressed through field 'minioService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'minioServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'minio.allowed-file-types' in value "#{${minio.allowed-file-types}}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.xhai.XhaiApplication.main(XhaiApplication.java:9)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'minioServiceImpl': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'minio.allowed-file-types' in value "#{${minio.allowed-file-types}}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	... 20 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'minio.allowed-file-types' in value "#{${minio.allowed-file-types}}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1330)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 31 common frames omitted
+2025-04-11 13:43:26 [main] INFO  com.xhai.XhaiApplication - Starting XhaiApplication using Java 1.8.0_201 on win10-2020BULJI with PID 20760 (E:\XHAI\Demo\target\classes started by Administrator in E:\XHAI)
+2025-04-11 13:43:26 [main] DEBUG com.xhai.XhaiApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-04-11 13:43:26 [main] INFO  com.xhai.XhaiApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-11 13:43:27 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (https)
+2025-04-11 13:43:27 [main] INFO  o.a.c.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.39] using APR version [1.7.4].
+2025-04-11 13:43:27 [main] INFO  o.a.c.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2025-04-11 13:43:27 [main] INFO  o.a.c.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2025-04-11 13:43:27 [main] INFO  o.a.c.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+2025-04-11 13:43:27 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-11 13:43:27 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-04-11 13:43:27 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-11 13:43:27 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1225 ms
+2025-04-11 13:43:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (https) with context path ''
+2025-04-11 13:43:29 [main] INFO  com.xhai.XhaiApplication - Started XhaiApplication in 3.581 seconds (JVM running for 4.454)

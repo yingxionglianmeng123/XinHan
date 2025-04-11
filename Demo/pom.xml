@@ -26,6 +26,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         
+        <!-- SpringDoc OpenAPI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        
         <!-- MyBatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -72,6 +79,13 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>8.5.2</version>
+        </dependency>
+
+        <!-- Knife4j API文档 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <version>4.3.0</version>
         </dependency>
     </dependencies>
 

@@ -9,17 +9,42 @@ jwt:
   secret: xinghanyunlian
   expiration: 86400  # 24小时 
 
+server:
+  port: 8080
+
 spring:
+  application:
+    name: xhai
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xhai?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
       enabled: true
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xhai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
+
+# Knife4j配置
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN
+    enable-swagger-models: true
+    enable-document-manage: true
+    swagger-model-name: 实体类列表
+    enable-version: true
+    enable-author: true
+    enable-debug: true
+    enable-dynamic-parameter: true
+    enable-request-cache: true
+    enable-filter-multipart-api-method-type: POST,GET,DELETE,PUT
+    enable-group: true
+    enable-validate: true
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
@@ -27,6 +52,12 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_uuid
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 minio:
   endpoint: http://122.51.187.38:9000
@@ -34,4 +65,14 @@ minio:
   secretKey: minioadmin
   bucket: xhai
   max-file-size: 10485760
-  allowed-file-types: image/jpeg,image/png,image/gif,application/pdf 
+  allowed-file-types: "image/jpeg,image/png,image/gif,image/bmp,image/webp,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf,text/plain,application/javascript,text/x-java-source,text/x-python,text/html,text/css,application/json,application/xml"
+
+logging:
+  level:
+    com.xhai: debug
+    org.springframework: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/xhai.log 

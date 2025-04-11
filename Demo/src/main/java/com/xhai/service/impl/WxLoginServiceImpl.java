@@ -112,6 +112,7 @@ public class WxLoginServiceImpl implements WxLoginService {
             responseDTO.setUserType(user.getUserType());
             responseDTO.setNickName(user.getNickName());
             responseDTO.setAvatarUrl(user.getAvatarUrl());
+            responseDTO.setUserId(user.getId());
 
             return responseDTO;
         } catch (Exception e) {

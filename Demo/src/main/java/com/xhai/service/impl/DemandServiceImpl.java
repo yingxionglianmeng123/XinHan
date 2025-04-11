@@ -1,7 +1,7 @@
 package com.xhai.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xhai.entity.Demand;
 import com.xhai.mapper.DemandMapper;
 import com.xhai.service.DemandService;
@@ -16,120 +16,109 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> implements DemandService {
+public class DemandServiceImpl implements DemandService {
 
     @Autowired
     private DemandMapper demandMapper;
-
+    
     @Autowired
     private UserService userService;
 
     @Override
+    @Transactional
     public DemandVO createDemand(Demand demand) {
-        // 设置默认值
-        if (demand.getApplicants() == null) {
-            demand.setApplicants(new ArrayList<>());
-        }
-        if (demand.getViewCount() == null) {
-            demand.setViewCount(0);
-        }
-        if (demand.getBlockchainVerified() == null) {
-            demand.setBlockchainVerified(false);
-        }
-        if (demand.getDeleted() == null) {
-            demand.setDeleted(0);
-        }
-        if (demand.getCreatedAt() == null) {
-            demand.setCreatedAt(LocalDateTime.now());
-        }
+        // 设置ID和创建时间
+        demand.setId(UUID.randomUUID().toString().replace("-", ""));
+        demand.setViewCount(0);
+        demand.setStatus("pending");
+        demand.setCreatedAt(LocalDateTime.now());  // 设置创建时间
         
-        save(demand);
+        // 保存需求
+        demandMapper.insert(demand);
+        
+        // 转换为VO并返回
         return convertToVO(demand);
     }
 
     @Override
+    @Transactional
     public DemandVO updateDemand(Demand demand) {
-        updateById(demand);
+        // 更新需求
+        demandMapper.updateById(demand);
+        
+        // 转换为VO并返回
         return convertToVO(demand);
     }
 
     @Override
     public DemandVO getDemandById(String id) {
-        Demand demand = getById(id);
-        return demand != null ? convertToVO(demand) : null;
+        Demand demand = demandMapper.selectById(id);
+        if (demand == null) {
+            return null;
+        }
+        return convertToVO(demand);
     }
 
     @Override
+    public List<DemandVO> getDemands(String category, String status, String publisherId, Integer page, Integer size) {
+        // 构建查询条件
+        LambdaQueryWrapper<Demand> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(category != null, Demand::getCategory, category)
+               .eq(status != null, Demand::getStatus, status)
+               .eq(publisherId != null, Demand::getPublisherId, publisherId)
+               .orderByDesc(Demand::getCreatedAt);
+        
+        // 分页查询
+        Page<Demand> pageResult = demandMapper.selectPage(new Page<>(page, size), wrapper);
+        
+        // 转换为VO并返回
+        return pageResult.getRecords().stream()
+                .map(this::convertToVO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
     public void deleteDemand(String id) {
-        removeById(id);
+        demandMapper.deleteById(id);
     }
 
     @Override
-    public List<DemandVO> getAllDemands() {
-        List<Demand> demands = list();
-        return demands.stream()
-                .map(this::convertToVO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DemandVO> getDemandsByStatus(String status) {
-        List<Demand> demands = baseMapper.findByStatus(status);
-        return demands.stream()
-                .map(this::convertToVO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DemandVO> getDemandsByPublisher(String publisherId) {
-        List<Demand> demands = baseMapper.findByPublisherId(publisherId);
-        return demands.stream()
-                .map(this::convertToVO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DemandVO> getDemandsBySkill(String skill) {
-        List<Demand> demands = baseMapper.findBySkill(skill);
-        return demands.stream()
-                .map(this::convertToVO)
-                .collect(Collectors.toList());
+    @Transactional
+    public DemandVO updateStatus(String id, String status) {
+        Demand demand = demandMapper.selectById(id);
+        if (demand != null) {
+            demand.setStatus(status);
+            demandMapper.updateById(demand);
+            return convertToVO(demand);
+        }
+        return null;
     }
 
     @Override
     @Transactional
     public void incrementViewCount(String id) {
-        Demand demand = getById(id);
+        Demand demand = demandMapper.selectById(id);
         if (demand != null) {
             demand.setViewCount(demand.getViewCount() + 1);
-            updateById(demand);
+            demandMapper.updateById(demand);
         }
     }
 
     @Override
-    @Transactional
-    public void incrementApplyCount(String id) {
-        Demand demand = getById(id);
-        if (demand != null) {
-            // 由于我们不再使用applyCount字段，这个方法可以留空或删除
-            // 申请者信息现在存储在applicants列表中
-        }
-    }
-
-    @Override
-    @Transactional
-    public boolean completeDemand(String id) {
-        Demand demand = getById(id);
-        if (demand != null && "open".equals(demand.getStatus())) {
-            demand.setStatus("completed");
-            return updateById(demand);
-        }
-        return false;
+    public List<DemandVO> getDemandsByStatus(String status) {
+        LambdaQueryWrapper<Demand> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Demand::getStatus, status)
+               .orderByDesc(Demand::getCreatedAt);
+        List<Demand> demands = demandMapper.selectList(wrapper);
+        return demands.stream()
+                .map(this::convertToVO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -137,7 +126,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         DemandStatisticsVO statistics = new DemandStatisticsVO();
         
         // 获取所有需求
-        List<Demand> allDemands = list();
+        List<Demand> allDemands = demandMapper.selectList(null);
         statistics.setTotalDemands((long) allDemands.size());
         
         // 统计各状态需求数量
@@ -153,24 +142,19 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
                 .filter(d -> "completed".equals(d.getStatus()))
                 .count());
         
-        // 设置钱包余额（这里暂时设置为0，后续可以集成钱包服务）
-        statistics.setWalletBalance(0.0);
+        // 计算总浏览量
+        statistics.setTotalViews(allDemands.stream()
+                .mapToInt(Demand::getViewCount)
+                .sum());
         
         return statistics;
     }
 
-    @Override
-    public List<DemandVO> getLatestDemands(int limit) {
-        LambdaQueryWrapper<Demand> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(Demand::getCreatedAt)
-               .last("LIMIT " + limit);
-        List<Demand> demands = list(wrapper);
-        return demands.stream()
-                .map(this::convertToVO)
-                .collect(Collectors.toList());
-    }
-
     private DemandVO convertToVO(Demand demand) {
+        if (demand == null) {
+            return null;
+        }
+        
         DemandVO vo = new DemandVO();
         BeanUtils.copyProperties(demand, vo);
         
@@ -178,17 +162,15 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         if (demand.getPublisherId() != null) {
             PublisherVO publisher = new PublisherVO();
             publisher.setId(demand.getPublisherId());
-            
-            // 尝试从用户服务获取用户信息
+            // 获取用户信息
             UserVO user = userService.getUserById(demand.getPublisherId());
             if (user != null) {
-                publisher.setName(user.getNickName() != null ? user.getNickName() : demand.getPublisherId());
-                publisher.setAvatar(user.getAvatarUrl() != null ? user.getAvatarUrl() : "/images/default-avatar.png");
+                publisher.setName(user.getNickName());
+                publisher.setAvatar(user.getAvatarUrl());
             } else {
                 publisher.setName(demand.getPublisherId());
-                publisher.setAvatar("/images/default-avatar.png");
+                publisher.setAvatar("https://example.com/default-avatar.png");
             }
-            
             vo.setPublisher(publisher);
         }
         

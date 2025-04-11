@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Map;
 
 @Service
 public class MinioServiceImpl implements MinioService {
@@ -32,16 +33,39 @@ public class MinioServiceImpl implements MinioService {
     @Value("${minio.endpoint}")
     private String endpoint;
 
-    @Value("${minio.max-file-size:10485760}") // 默认10MB
+    @Value("${minio.max-file-size}")
     private long maxFileSize;
 
-    @Value("${minio.allowed-file-types:image/jpeg,image/png,image/gif,application/pdf}")
+    @Value("${minio.allowed-file-types}")
     private String allowedFileTypes;
+
+    private String getFileType(String contentType) {
+        if (contentType.startsWith("image/")) {
+            return "images";
+        } else if (contentType.contains("word") || contentType.contains("excel") || 
+                  contentType.contains("powerpoint") || contentType.contains("pdf") || 
+                  contentType.equals("text/plain")) {
+            return "documents";
+        } else if (contentType.contains("javascript") || contentType.contains("java") || 
+                  contentType.contains("python") || contentType.contains("html") || 
+                  contentType.contains("css") || contentType.contains("json") || 
+                  contentType.contains("xml")) {
+            return "code";
+        }
+        return "others";
+    }
+    
+    private String generateFileName(MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+        String fileType = getFileType(file.getContentType());
+        return fileType + "/" + UUID.randomUUID().toString() + extension;
+    }
 
     @Override
     public String uploadFile(MultipartFile file) throws Exception {
         validateFile(file);
-        String fileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+        String fileName = generateFileName(file);
         return uploadFile(file, fileName);
     }
 
@@ -137,14 +161,10 @@ public class MinioServiceImpl implements MinioService {
     }
 
     private void validateFile(MultipartFile file) throws Exception {
-        if (file == null || file.isEmpty()) {
-            throw new Exception("文件不能为空");
-        }
-
         if (file.getSize() > maxFileSize) {
             throw new Exception("文件大小超过限制");
         }
-
+        
         String contentType = file.getContentType();
         if (contentType == null || !Arrays.asList(allowedFileTypes.split(",")).contains(contentType)) {
             throw new Exception("不支持的文件类型");

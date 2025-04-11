@@ -13,13 +13,10 @@ public class DemandVO {
     private String description;
     private BigDecimal price;
     private String category;
-    private List<String> skills;
     private List<String> attachments;
     private LocalDate deadline;
     private String status;
     private PublisherVO publisher;
-    private List<String> applicants;
-    private String selectedApplicant;
     private Integer viewCount;
     private LocalDateTime createdAt;
 }
